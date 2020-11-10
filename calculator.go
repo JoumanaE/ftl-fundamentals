@@ -28,8 +28,8 @@ func Divide(a, b float64) (float64, error) {
 	return a / b, nil
 }
 
-// Square calculates the square of a given number.
-func Square(a float64) float64 {
+// Sqrt calculates the square of a given number.
+func Sqrt(a float64) float64 {
 	return a * a
 
 }

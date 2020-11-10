@@ -8,7 +8,7 @@ import (
 func TestCalculator(t *testing.T) {
 
 	var tests = []struct {
-		function func(float64, float64) float64
+		function func(a float64, b float64) float64
 		want     float64
 		input    []float64
 	}{
@@ -60,7 +60,7 @@ func TestDivide(t *testing.T) {
 
 }
 
-func TestSquare(t *testing.T) {
+func TestSqrt(t *testing.T) {
 	var tests = []struct {
 		a             float64
 		want          float64
@@ -76,7 +76,7 @@ func TestSquare(t *testing.T) {
 		},
 	}
 	for _, tt := range tests {
-		got := calculator.Square(tt.a)
+		got := calculator.Sqrt(tt.a)
 		if tt.want != got {
 			t.Errorf("given %f, want: %f, got: %f", tt.a, tt.want, got)
 		}
