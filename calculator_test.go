@@ -50,7 +50,7 @@ func TestDivide(t *testing.T) {
 			t.Fatal("want err dividing by zero, got nil")
 		}
 		if !tt.errorExpected && err != nil {
-			t.Fatal("Unexpected error")
+			t.Fatalf("Unexpected error: %v", err)
 		}
 		if !tt.errorExpected && tt.want != got {
 			t.Errorf("given %f/%f, want: %f, got: %f", tt.a, tt.b, tt.want, got)
