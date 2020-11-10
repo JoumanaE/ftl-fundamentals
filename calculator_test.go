@@ -47,7 +47,7 @@ func TestDivide(t *testing.T) {
 	for _, tt := range tests {
 		got, err := calculator.Divide(tt.a, tt.b)
 		if tt.errorExpected && err == nil {
-			t.Fatal("want err/0, got nil")
+			t.Fatal("want err dividing by zero, got nil")
 		}
 		if !tt.errorExpected && err != nil {
 			t.Fatal("Unexpected error")
