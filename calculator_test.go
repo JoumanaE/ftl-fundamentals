@@ -2,6 +2,8 @@ package calculator_test
 
 import (
 	"calculator"
+	"fmt"
+	"math"
 	"testing"
 )
 
@@ -68,15 +70,16 @@ func TestSqrt(t *testing.T) {
 	}{
 		{
 			a:    2,
-			want: 4,
+			want: math.Sqrt(2),
 		},
 		{
-			a:    -2,
-			want: 4,
+			a:    16,
+			want: math.Sqrt(16),
 		},
 	}
 	for _, tt := range tests {
 		got := calculator.Sqrt(tt.a)
+		fmt.Println(got)
 		if tt.want != got {
 			t.Errorf("given %f, want: %f, got: %f", tt.a, tt.want, got)
 		}
