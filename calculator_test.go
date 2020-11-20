@@ -3,7 +3,6 @@ package calculator_test
 import (
 	"calculator"
 	"fmt"
-	"math"
 	"testing"
 )
 
@@ -69,12 +68,12 @@ func TestSqrt(t *testing.T) {
 		errorExpected bool
 	}{
 		{
-			a:    2,
-			want: math.Sqrt(2),
+			a:    4,
+			want: 2,
 		},
 		{
 			a:    16,
-			want: math.Sqrt(16),
+			want: 4,
 		},
 	}
 	for _, tt := range tests {
