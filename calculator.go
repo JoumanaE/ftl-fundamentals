@@ -3,6 +3,7 @@ package calculator
 
 import (
 	"errors"
+	"fmt"
 	"math"
 )
 
@@ -26,13 +27,14 @@ func Multiply(a, b float64) float64 {
 func Divide(a, b float64) (float64, error) {
 	if b == 0 {
 		return 0, errors.New("division by zero is undefined")
-
 	}
 	return a / b, nil
 }
 
 // Sqrt calculates the square of a given number.
-func Sqrt(a float64) float64 {
-	return math.Sqrt(a)
-
+func Sqrt(a float64) (float64, error) {
+	if a < 0 {
+		return 0, fmt.Errorf("square root of a negative number is undefined: %f", a)
+	}
+	return math.Sqrt(a), nil
 }

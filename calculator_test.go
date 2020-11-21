@@ -2,12 +2,10 @@ package calculator_test
 
 import (
 	"calculator"
-	"fmt"
 	"testing"
 )
 
 func TestCalculator(t *testing.T) {
-
 	var tests = []struct {
 		function func(a float64, b float64) float64
 		want     float64
@@ -22,7 +20,6 @@ func TestCalculator(t *testing.T) {
 		if tt.want != got {
 			t.Errorf("want %f, got %f", tt.want, got)
 		}
-
 	}
 }
 
@@ -37,7 +34,8 @@ func TestDivide(t *testing.T) {
 			a:             4,
 			b:             0,
 			want:          999,
-			errorExpected: true},
+			errorExpected: true,
+		},
 		{
 			a:             4,
 			b:             2,
@@ -47,42 +45,42 @@ func TestDivide(t *testing.T) {
 	}
 	for _, tt := range tests {
 		got, err := calculator.Divide(tt.a, tt.b)
-		if tt.errorExpected && err == nil {
-			t.Fatal("want err dividing by zero, got nil")
-		}
-		if !tt.errorExpected && err != nil {
-			t.Fatalf("Unexpected error: %v", err)
+		if tt.errorExpected != (err != nil) {
+			t.Fatalf("Unexpected error status: %v", err)
 		}
 		if !tt.errorExpected && tt.want != got {
 			t.Errorf("given %f/%f, want: %f, got: %f", tt.a, tt.b, tt.want, got)
 		}
-
 	}
-
 }
 
 func TestSqrt(t *testing.T) {
 	var tests = []struct {
-		a             float64
+		input             float64
 		want          float64
 		errorExpected bool
 	}{
 		{
-			a:    4,
+			input:    4,
 			want: 2,
 		},
 		{
-			a:    16,
+			input:    16,
 			want: 4,
+		},
+		{
+			input: -1,
+			want: 999,
+			errorExpected: true,
 		},
 	}
 	for _, tt := range tests {
-		got := calculator.Sqrt(tt.a)
-		fmt.Println(got)
-		if tt.want != got {
-			t.Errorf("given %f, want: %f, got: %f", tt.a, tt.want, got)
+		got, err := calculator.Sqrt(tt.input)
+		if tt.errorExpected != (err != nil) {
+			t.Fatalf("given %f, unexpected error status: %v", tt.input, err)
 		}
-
+		if !tt.errorExpected && tt.want != got {
+			t.Errorf("given %f, want: %f, got: %f", tt.input, tt.want, got)
+		}
 	}
-
 }
